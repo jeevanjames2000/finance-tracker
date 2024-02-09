@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Form from './components/Form';
+import { useDispatch } from 'react-redux';
+import { retrieveTransactions } from './store/expenseSlice';
+import { useEffect } from 'react';
+import { Grid, Typography } from '@mui/material';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(retrieveTransactions());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<Grid container >
+  <Grid item container xs={12} spacing={4}>
+<Grid item xs={12} >
+      <Typography variant='h3' style={{backgroundColor: '#374151',color:'white'}}>Chart Examples</Typography>
+</Grid>
+      <Grid item xs={12}>
+          <Form />
+   </Grid>
+  </Grid>
+</Grid>
+   
   );
 }
 
